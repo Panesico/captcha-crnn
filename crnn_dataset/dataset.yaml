@@ -1,0 +1,14 @@
+
+path: /home/panesico/repositories/solbot/captcha-crnn/crnn_dataset
+train:
+  images: train/images
+  labels: train/labels
+val:
+  images: val/images
+  labels: val/labels
+test:
+  images: test/images
+  labels: test/labels
+
+names:
+  0: captcha
