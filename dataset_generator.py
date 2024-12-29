@@ -58,13 +58,6 @@ class CRNNDatasetCreator:
         img = cv2.imread(str(captcha['filename']))
         if img is None:
             raise ValueError(f"Failed to load image: {captcha['filename']}")
-        # Apply random augmentations
-        if random.random() < 0.5:
-            img = cv2.GaussianBlur(img, (3, 3), random.uniform(0.5, 1.5))
-        if random.random() < 0.5:
-            img = cv2.convertScaleAbs(img, 
-                alpha=random.uniform(0.8, 1.2),  # contrast
-                beta=random.uniform(-10, 10))    # brightness
         # Determine split (80/10/10)
         split = 'train' if idx < 0.8 * num_images else \
                 'val' if idx < 0.9 * num_images else 'test'
