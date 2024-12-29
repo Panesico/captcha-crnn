@@ -58,6 +58,8 @@ class CRNNDatasetCreator:
         img = cv2.imread(str(captcha['filename']))
         if img is None:
             raise ValueError(f"Failed to load image: {captcha['filename']}")
+        # Apply augmentation
+        img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)  # Convert to grayscale
         # Determine split (80/10/10)
         split = 'train' if idx < 0.8 * num_images else \
                 'val' if idx < 0.9 * num_images else 'test'
