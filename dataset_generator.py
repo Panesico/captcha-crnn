@@ -58,7 +58,7 @@ class CRNNDatasetCreator:
         img = cv2.imread(str(captcha['filename']))
         if img is None:
             raise ValueError(f"Failed to load image: {captcha['filename']}")
-        # Apply augmentation
+        # Apply random augmentations
         img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)  # Convert to grayscale
         # Determine split (80/10/10)
         split = 'train' if idx < 0.8 * num_images else \
@@ -121,7 +121,7 @@ names:
 if __name__ == "__main__":
     import argparse
     parser = argparse.ArgumentParser()
-    parser.add_argument('--num-images', type=int, default=100)
+    parser.add_argument('--num-images', type=int, default=30)
     parser.add_argument('--output-dir', type=str, default='crnn_dataset')
     args = parser.parse_args()
     creator = CRNNDatasetCreator(args.output_dir)
